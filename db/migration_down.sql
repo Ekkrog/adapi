@@ -1,11 +1,3 @@
--- =====================================================================
---  Adatabase — La Remise
---  migration_down.sql — suppression complète
---
---  Ordre inverse exact du up : niveau 3 → 2 → 1 → 0, PUIS les types.
---  IF EXISTS partout : le script doit passer même si rien n'existe.
--- =====================================================================
-
 
 -- Niveau 3
 DROP TABLE IF EXISTS reparation;

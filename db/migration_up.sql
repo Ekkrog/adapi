@@ -1,15 +1,3 @@
--- =====================================================================
---  Adatabase — La Remise
---  migration_up.sql — création des types et des tables
---
---  Ordre imposé par l'arbre de dépendances :
---    types → niveau 0 → niveau 1 → niveau 2 → niveau 3
--- =====================================================================
-
-
--- ---------------------------------------------------------------------
---  Les types énumérés — toujours en tête, avant toute table
--- ---------------------------------------------------------------------
 
 CREATE TYPE type_depot          AS ENUM ('boutique', 'domicile');                                -- RG1
 CREATE TYPE etat_objet          AS ENUM ('bon_etat', 'a_reparer', 'hors_service');               -- RG5
