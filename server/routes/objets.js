@@ -26,13 +26,25 @@ objets.get("/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const { rows } = await pool.query(
-      `SELECT 
-            objet.*, categorie.libelle, depot.*, personne.*
-            FROM objet
-            JOIN depot ON objet.depot_id = depot.id
-            JOIN personne ON depot.personne_id = personne.id
-            JOIN categorie ON objet.categorie_id = categorie.id
-            WHERE objet.id = $1;`,
+      `SELECT  
+          objet.id AS objet_id,
+          objet.libelle AS objet_libelle,
+          objet.poids_kg,
+          objet.etat_arrivee,
+          objet.statut,
+          objet.prix,
+          categorie.libelle AS categorie_libelle,
+          depot.id AS depot_id,
+          depot.date_depot,
+          depot.type AS depot_type,
+          personne.id AS personne_id,
+          personne.nom,
+          personne.prenom
+          FROM objet
+          JOIN depot ON objet.depot_id = depot.id
+          JOIN personne ON depot.personne_id = personne.id
+          JOIN categorie ON objet.categorie_id = categorie.id
+          WHERE objet.id = $1;`,
       [id],
     );
 
@@ -55,7 +67,7 @@ objets.patch("/:id/statut", async (req, res) => {
     const { statut, prix } = req.body;
 
       if (!statut) {
-      return res.status(400).json({ error: "statut est obligatoire" });
+      return res.status(400).json({ error: "le statut est obligatoire" });
     }
 
     const { rows } = await pool.query(
@@ -73,6 +85,6 @@ objets.patch("/:id/statut", async (req, res) => {
     res.status(200).json(rows[0])
   } catch (error) {
     console.error(error);
-    res.status(400).json({ error : "erreur de la mise à jour du statut" })
+    res.status(400).json({ error : "statut invalide" })
   }
 })

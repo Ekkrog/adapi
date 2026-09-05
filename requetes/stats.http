@@ -1,0 +1,4 @@
+@baseUrl = http://localhost:3000
+
+### Statistiques : objets par statut, poids total, poids détourné
+GET {{baseUrl}}/stats

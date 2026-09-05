@@ -28,7 +28,7 @@ depots.get("/:id", async (req, res) => {
     );
 
     if (rows.length === 0) {
-        return res.status(404).json({ error: "depot non trouvé" });
+        return res.status(404).json({ error: "depot inexistant" });
       }
 
     res.status(200).json(rows);

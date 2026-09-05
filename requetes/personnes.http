@@ -1,0 +1,23 @@
+@baseUrl = http://localhost:3000
+
+### Liste des personnes (succès)
+GET {{baseUrl}}/personnes
+
+### Créer une personne (succès)
+POST {{baseUrl}}/personnes
+Content-Type: application/json
+
+{
+  "nom": "Dupont",
+  "prenom": "Claire",
+  "telephone": "0612345678",
+  "adherente": true
+}
+
+### Erreur : corps incomplet (nom manquant)
+POST {{baseUrl}}/personnes
+Content-Type: application/json
+
+{
+  "prenom": "Claire"
+}

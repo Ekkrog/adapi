@@ -1,0 +1,46 @@
+@baseUrl = http://localhost:3000
+
+### Liste des objets
+GET {{baseUrl}}/objets
+
+### Filtre par statut et categorie
+GET {{baseUrl}}/objets?statut=en_rayon&categorie_id=1
+
+### Objet id = 1
+GET {{baseUrl}}/objets/1
+
+### Erreur : identifiant d'objet inexistant
+GET {{baseUrl}}/objets/99999
+
+### Mettre à jour le statut d'un objet
+PATCH {{baseUrl}}/objets/1/statut
+Content-Type: application/json
+
+{
+  "statut": "en_rayon",
+  "prix": 12.50
+}
+
+### Erreur : corps incomplet (statut manquant)
+PATCH {{baseUrl}}/objets/1/statut
+Content-Type: application/json
+
+{
+  "prix": 12.50
+}
+
+### Erreur : valeur invalide
+PATCH {{baseUrl}}/objets/1/statut
+Content-Type: application/json
+
+{
+  "statut": "perdu"
+}
+
+### Objet non trouvé lors de la maj du statut
+PATCH {{baseUrl}}/objets/99999/statut
+Content-Type: application/json
+
+{
+  "statut": "en_rayon"
+}

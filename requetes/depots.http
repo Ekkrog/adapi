@@ -1,0 +1,71 @@
+@baseUrl = http://localhost:3000
+
+### Liste des dépôts
+GET {{baseUrl}}/depots
+
+### Depot.id =1 
+GET {{baseUrl}}/depots/1
+
+### Depot inexsitant
+GET {{baseUrl}}/depots/99999
+
+### Créer un dépôt 
+POST {{baseUrl}}/depots
+Content-Type: application/json
+
+{
+    "personne_id": 1,
+    "date_depot": "2026-09-05",
+    "type": "boutique"
+}
+
+### Depot incomplet
+POST {{baseUrl}}/depots
+Content-Type: application/json
+
+{ 
+    "personne_id": 1,
+    "type" : "boutique"
+}
+
+### Depot invalide
+POST {{baseUrl}}/depots
+Content-Type: application/json
+
+{
+  "personne_id": 1,
+  "date_depot": "2026-09-05",
+  "type": "en_ligne"
+}
+
+### Ajouter un objet dans un depot
+POST {{baseUrl}}/depots/1/objets
+Content-Type: application/json
+
+{
+  "libelle": "Vélo enfant",
+  "poids_kg": 8.5,
+  "etat_arrivee": "bon_etat",
+  "categorie_id": 1
+}
+
+### Objet créé incomplet
+POST {{baseUrl}}/depots/1/objets
+Content-Type: application/json
+
+{
+  "libelle": "Vélo enfant",
+  "poids_kg": 8.5,
+  "etat_arrivee": "bon_etat"
+}
+
+### Objet créé avec une erreur 
+POST {{baseUrl}}/depots/1/objets
+Content-Type: application/json
+
+{
+  "libelle": "Vélo enfant",
+  "poids_kg": 8.5,
+  "etat_arrivee": "presque_neuf",
+  "categorie_id": 1
+}
